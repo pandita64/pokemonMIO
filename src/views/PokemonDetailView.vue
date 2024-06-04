@@ -61,7 +61,7 @@ export default {
 
 .pokemon-title {
   font-family: 'Arial', sans-serif;
-
+  color: #3B4CCA;
 }
 
 .pokemon-stats {
