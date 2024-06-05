@@ -53,7 +53,6 @@ export default {
         this.selectedPokemon = pokemon;
         const res = await PokemonServices.getPokemonDetail(pokemon.name);
         this.silhouetteImage = res.sprites.other.dream_world.front_default;
-        // Inicialmente, no mostramos la imagen completa del Pokémon
         this.pokemonImage = ""; 
       } catch (error) {
         console.error("Error fetching pokemon details:", error);
