@@ -28,14 +28,14 @@ export default {
   data() {
     return {
       pokemon: {},
-      abilities: [] // Almacenar las habilidades del pokemon 
+      abilities: [],
     }
   },
   async created() {
     try {
-      const name = this.$route.params.name;  // Obtener el nombre del pokemon
-      this.pokemon = await PokemonServices.getPokemonDetail(name);  // Obtener detalles del pokemon
-      await this.getPokemonAbilities(this.pokemon);  // Obtener habilidades del pokemon
+      const name = this.$route.params.name;  
+      this.pokemon = await PokemonServices.getPokemonDetail(name); 
+      await this.getPokemonAbilities(this.pokemon);
     } catch (error) {
       console.error(error);
     }
