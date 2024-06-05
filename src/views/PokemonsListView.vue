@@ -10,7 +10,7 @@
         <router-link :to="{ name: 'Pokemon', params: { name: pokemon.name } }">
           <div class="card d-flex justify-content-center aling-items-center mb-3">
             <div class="card-title">
-              
+              <img :src="pokemon.sprites?.front_default" alt="Front sprite" style="width: 180px; height: 180px;">
               <h4>
                 {{ pokemon.name }}
               </h4>
@@ -42,7 +42,11 @@ export default {
   },
   async created() {
     this.pokemons = await PokemonServices.getPokemons()
-
+    this.pokemons.forEach(pokemon => {
+      PokemonServices.getPokemonDetail(pokemon.name).then(res => {
+        pokemon.sprites = res.sprites
+      })
+    })
   },
 
   watch: {
@@ -66,7 +70,7 @@ export default {
     }
 
   },
-
+  
   watch: {
     selectedPokemonNameFromRoute(newName) {
       this.selectedPokemonName = newName
