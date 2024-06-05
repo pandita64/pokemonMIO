@@ -136,11 +136,11 @@ h1 {
 
 .silhouette-image {
   filter: brightness(0); 
-  transition: filter 0.3s ease-in-out; /* Transición suave para el filtro */
+  transition: filter 0.3s ease-in-out;
 }
 
 .pokemon-image {
-  transition: transform 0.3s ease-in-out; /* Transición suave para la transformación */
+  transition: transform 0.3s ease-in-out;
 }
 
 .btn {
