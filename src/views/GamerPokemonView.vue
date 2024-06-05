@@ -26,8 +26,8 @@ import PokemonServices from "@/services/PokemonServices.js";
 export default {
   data() {
     return {
-      allPokemons: [], // Todos los Pokémon disponibles
-      pokemons: [], // Pokémon mostrados en el juego
+      allPokemons: [], 
+      pokemons: [],
       selectedPokemon: null,
       showSilhouette: true,
       pokemonImage: "",
@@ -39,8 +39,8 @@ export default {
   async created() {
     try {
       const pokemons = await PokemonServices.getPokemons();
-      this.allPokemons = pokemons; // Almacena todos los Pokémon disponibles
-      this.resetGame(); // Inicializa el juego
+      this.allPokemons = pokemons;
+      this.resetGame();
     } catch (error) {
       console.error("Error fetching pokemons:", error);
     }
@@ -93,8 +93,8 @@ export default {
     resetGame() {
       this.showSilhouette = true;
       this.showResult = false;
-      this.pokemons = this.getRandomPokemons(4); // Selecciona 4 Pokémon aleatorios para mostrar
-      this.getRandomPokemon(); // Selecciona uno de los 4 como el Pokémon a adivinar
+      this.pokemons = this.getRandomPokemons(4); 
+      this.getRandomPokemon(); 
     },
     getRandomPokemons(count) {
       const shuffled = [...this.allPokemons].sort(() => 0.5 - Math.random());
@@ -115,23 +115,23 @@ export default {
   margin: 40px auto;
   padding: 20px;
   border: 1px solid #ddd;
-  border-radius: 10px; /* Añadir bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajustar sombra para un efecto más sutil */
-  background-color: #f8f9fa; /* Fondo claro para un mejor contraste */
-  text-align: center; /* Centrar contenido */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  background-color: #f8f9fa; 
+  text-align: center; 
 }
 
 h1 {
   font-size: 1.8rem;
   margin-bottom: 20px;
-  color: #333; /* Color de texto más oscuro para mejor legibilidad */
+  color: #333;
 }
 
 .img-fluid {
   max-width: 80%;
   height: auto;
   margin: 20px auto;
-  display: block; /* Asegurar que la imagen esté centrada */
+  display: block;
 }
 
 .silhouette-image {
