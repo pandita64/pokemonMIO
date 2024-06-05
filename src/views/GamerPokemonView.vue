@@ -146,10 +146,10 @@ h1 {
 .btn {
   margin: 10px;
   padding: 10px 20px;
-  font-size: 1rem; /* Ajustar tamaño de fuente para mejor legibilidad */
+  font-size: 1rem; 
   border: none;
-  border-radius: 5px; /* Bordes redondeados para los botones */
-  transition: background-color 0.3s ease-in-out; /* Transición suave para el color de fondo */
+  border-radius: 5px; 
+  transition: background-color 0.3s ease-in-out; 
 }
 
 .btn-primary {
