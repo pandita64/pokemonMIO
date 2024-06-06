@@ -6,7 +6,13 @@
       <img v-else :src="pokemonImage" alt="Pokémon" class="img-fluid pokemon-image" />
     </div>
     <div class="row justify-content-center">
-      <button v-for="(pokemon, index) in pokemons" :key="index" @click="selectPokemon(pokemon)" class="btn btn-primary m-2">
+      <button
+        v-for="(pokemon, index) in pokemons"
+        :key="index"
+        @click="selectPokemon(pokemon)"
+        class="btn btn-primary m-2"
+        :disabled="disableButtons"
+      >
         {{ pokemon.name }}
       </button>
     </div>
@@ -19,14 +25,13 @@
   </div>
 </template>
 
-
 <script>
 import PokemonServices from "@/services/PokemonServices.js";
 
 export default {
   data() {
     return {
-      allPokemons: [], 
+      allPokemons: [],
       pokemons: [],
       selectedPokemon: null,
       showSilhouette: true,
@@ -34,6 +39,7 @@ export default {
       silhouetteImage: "",
       showResult: false,
       resultMessage: "",
+      disableButtons: false,
     };
   },
   async created() {
@@ -53,13 +59,14 @@ export default {
         this.selectedPokemon = pokemon;
         const res = await PokemonServices.getPokemonDetail(pokemon.name);
         this.silhouetteImage = res.sprites.other.dream_world.front_default;
-        this.pokemonImage = ""; 
+        this.pokemonImage = "";
       } catch (error) {
         console.error("Error fetching pokemon details:", error);
       }
     },
     async selectPokemon(pokemon) {
       this.showSilhouette = false;
+      this.disableButtons = true; // Deshabilitar los botones una vez que se ha seleccionado un Pokémon
       if (pokemon.name === this.selectedPokemon.name) {
         this.resultMessage = "¡Correcto!";
         try {
@@ -92,8 +99,9 @@ export default {
     resetGame() {
       this.showSilhouette = true;
       this.showResult = false;
-      this.pokemons = this.getRandomPokemons(4); 
-      this.getRandomPokemon(); 
+      this.disableButtons = false; // Habilitar los botones al reiniciar el juego
+      this.pokemons = this.getRandomPokemons(4);
+      this.getRandomPokemon();
     },
     getRandomPokemons(count) {
       const shuffled = [...this.allPokemons].sort(() => 0.5 - Math.random());
@@ -158,6 +166,11 @@ h1 {
 
 .btn-primary:hover {
   background-color: #0056b3; /* Cambiar color al pasar el mouse */
+}
+
+.btn-primary:disabled {
+  background-color: #cccccc; /* Cambiar color cuando está deshabilitado */
+  cursor: not-allowed;
 }
 
 .btn-secondary {
